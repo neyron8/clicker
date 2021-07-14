@@ -42,6 +42,7 @@
         android:id="@+id/text_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,5 +55,32 @@
         android:text="Money:"
         app:layout_constraintEnd_toStartOf="@+id/text_money"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/upgrade_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Upgrade"
+        app:layout_constraintBottom_toBottomOf="@+id/roll_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Damage:"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/text_damage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/text_money"
+        app:layout_constraintTop_toBottomOf="@+id/text_money" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

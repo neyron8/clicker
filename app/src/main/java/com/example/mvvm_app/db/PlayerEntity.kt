@@ -5,9 +5,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_table")
-data class PlayerEntity(
+class PlayerEntity(
     @PrimaryKey
     @ColumnInfo(name = "id") val id : Int,
-    @ColumnInfo(name = "damage") val damage : Int,
-    @ColumnInfo(name = "money") val money : Int
+    @ColumnInfo(name = "damage") var damage : Int,
+    @ColumnInfo(name = "money") var money : Int
 )
+{
+    fun increaseDamage(num : Int){
+        damage += num
+    }
+    fun increaseMoney(num : Int){
+        money += num
+    }
+}

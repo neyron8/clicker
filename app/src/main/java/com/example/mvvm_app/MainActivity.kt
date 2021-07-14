@@ -26,71 +26,77 @@ class MainActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
 
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: CustomAdapter
-    lateinit var viewModel1: MainActivityViewModel
+    private lateinit var viewModel1: MainActivityViewModel
+    lateinit var player: PlayerEntity
     private var launcher: ActivityResultLauncher<Intent>? = null
-
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(RollViewModel::class.java)
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         adapter = CustomAdapter(this@MainActivity)
-        setContentView(binding.root)
-
         viewModel1 = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        setContentView(binding.root)
 
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
                 result: ActivityResult ->
             if(result.resultCode == RESULT_OK){
                 val answer = result.data?.getIntExtra("Rwd", 0)
-                val sum = Integer.parseInt(text_money.text as String) + answer!!
-                text_money.text = sum.toString()
+                player.increaseMoney(answer!!)
+                viewModel1.updatePlayer(player)
+                text_money.text = player.money.toString()
             }
         }
         init()
-        roll_button.setOnClickListener{
-            Toast.makeText(this,"${viewModel1.getPlayer(0).money}", Toast.LENGTH_SHORT).show()
-            val damage = Integer.parseInt(text_money.text as String)
+
+        text_money.text = player.money.toString()
+        text_damage.text = player.damage.toString()
+
+        upgrade_button.setOnClickListener{
+            player = viewModel1.getPlayer(0)
+            if(player.money >= player.damage * 3){
+                updatePlayerChanges()
+            } else {
+                Toast.makeText(this,"There is not enough money: ${player.damage * 3} needed", Toast.LENGTH_SHORT).show()
+            }
         }
-        /*roll_button.setOnClickListener{
-            val damage = Integer.parseInt(text_money.text as String)
-            viewModel1.insertPlayer(PlayerEntity(0,5,damage))
-        }*/
-
-        viewModel.roll_value.observe(this, {
-            displayDice(it)
-        })
     }
 
-    private fun roll_dice(){
-        viewModel.roll()
-        Toast.makeText(this,"Dice rolled", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun displayDice(value : Int){
-        textView.text = if (value > 0) value.toString() else " "
+    private fun updatePlayerChanges() {
+        player = viewModel1.getPlayer(0)
+        player.money -= player.damage * 3
+        player.increaseDamage(5)
+        text_damage.text = player.damage.toString()
+        text_money.text = player.money.toString()
+        viewModel1.updatePlayer(player)
     }
 
     private fun init() {
         recycler_v.layoutManager = LinearLayoutManager(this@MainActivity)
         recycler_v.adapter = adapter
-        //Maybe will be moved into adapter
-        adapter.addMonster(Monster(12, "ABOBA", 30, 5000))
-        adapter.addMonster(Monster(13, "Punisher", 900, 531000))
+
+        adapter.addMonster(Monster(12, "Aboba", 30, 50))
+        adapter.addMonster(Monster(13, "Punisher", 90, 100))
+        adapter.addMonster(Monster(14, "Destroyer", 90, 300))
+
+        player = viewModel1.getPlayer(0)
+
+        if(!this::player.isInitialized){
+            Toast.makeText(this,"Playing first time? New player added to database",
+                Toast.LENGTH_SHORT).
+            show()
+            viewModel1.insertPlayer(PlayerEntity(0,5,0))
+            player = viewModel1.getPlayer(0)
+        }
     }
 
     override fun onItemClick(position: Int) {
         val clickedMonster = adapter.MonsterList[position]
         val i = Intent(this,MonsterActivity::class.java)
         i.putExtra("Class", clickedMonster)
-        /*val i = Intent(this,MonsterActivity::class.java)
-        i.putExtra("ImageId", clickedMonster.imageId)
-        i.putExtra("Name", clickedMonster.name)
-        i.putExtra("HP", clickedMonster.hp)
-        i.putExtra("Reward", clickedMonster.reward)*/
+        i.putExtra("Damage", player.damage)
         launcher?.launch(i)
     }
+
+
 }

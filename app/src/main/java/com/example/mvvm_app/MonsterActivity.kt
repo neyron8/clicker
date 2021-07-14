@@ -23,6 +23,7 @@ class MonsterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_monster)
 
         val monster = intent.getParcelableExtra<Monster>("Class")
+        val damage = intent.getIntExtra("Damage", 0)
 
         /*val imageId = intent.getIntExtra("ImageId", 0)
         val name = intent.getStringExtra("Name")
@@ -44,7 +45,7 @@ class MonsterActivity : AppCompatActivity() {
             .get(MonsterViewModel::class.java)
 
         imageView.setOnClickListener {
-            hitMonster()
+            hitMonster(damage)
         }
 
         viewModel.hp.observe(this, {
@@ -63,14 +64,17 @@ class MonsterActivity : AppCompatActivity() {
 
     }
 
-    private fun hitMonster(){
-        viewModel.hit(5)
+    private fun hitMonster(dmg : Int){
+        viewModel.hit(dmg)
         viewModel.checkDeath()
         //Toast.makeText(this,"Dice rolled", Toast.LENGTH_SHORT).show()
     }
 
     private fun display(value : Int){
-        text_MonsterHP.text = value.toString()
+        if(value < 0)
+            text_MonsterHP.text = "0"
+        else
+            text_MonsterHP.text = value.toString()
     }
 
     fun OnClick(view: View){
