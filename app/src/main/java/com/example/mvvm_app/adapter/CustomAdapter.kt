@@ -19,6 +19,9 @@ class CustomAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<Cus
         val binding = MonsterItemBinding.bind(item)
 
         fun bind(monster: Monster) = with(binding){
+            /*monsterIcon.setImageResource(monster.imageId)
+            monsterIcon.layoutParams.height = 60 // OR
+            monsterIcon.layoutParams.width = 60*/
             textMonsterName.text = monster.name
             textMonsterHP.text = monster.hp.toString()
             textMonsterReward.text = monster.reward.toString()

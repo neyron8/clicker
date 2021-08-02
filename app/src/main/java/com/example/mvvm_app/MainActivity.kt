@@ -1,26 +1,20 @@
 package com.example.mvvm_app
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvm_app.adapter.CustomAdapter
 import com.example.mvvm_app.databinding.ActivityMainBinding
 import com.example.mvvm_app.db.PlayerEntity
 import com.example.mvvm_app.model.Monster
 import com.example.mvvm_app.viewmodel.MainActivityViewModel
-import com.example.mvvm_app.viewmodel.RollViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
 
@@ -75,9 +69,32 @@ class MainActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
         recycler_v.layoutManager = LinearLayoutManager(this@MainActivity)
         recycler_v.adapter = adapter
 
-        adapter.addMonster(Monster(12, "Aboba", 30, 50))
-        adapter.addMonster(Monster(13, "Punisher", 90, 100))
-        adapter.addMonster(Monster(14, "Destroyer", 90, 300))
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_1", "drawable", packageName),
+                "Aboba",
+                30,
+                50
+            )
+        )
+
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_2", "drawable", packageName),
+                "Punisher",
+                90,
+                100
+            )
+        )
+
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_3", "drawable", packageName),
+                "Destroyer",
+                90,
+                300
+            )
+        )
 
         player = viewModel1.getPlayer(0)
 

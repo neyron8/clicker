@@ -28,13 +28,13 @@ class MonsterViewModel(mons: Monster): ViewModel() {
         _hp.value = monster.hp
     }
 
+    fun getHP(): Int { return monster.hp}
+
     fun checkDeath(){
         if(_hp.value!! <= 0){
             _killed.value = true
         }
     }
-
-
 }
 
 class MyViewModelFactory(
