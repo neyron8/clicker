@@ -69,32 +69,7 @@ class MainActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
         recycler_v.layoutManager = LinearLayoutManager(this@MainActivity)
         recycler_v.adapter = adapter
 
-        adapter.addMonster(
-            Monster(
-                resources.getIdentifier("monster_1", "drawable", packageName),
-                "Aboba",
-                30,
-                50
-            )
-        )
-
-        adapter.addMonster(
-            Monster(
-                resources.getIdentifier("monster_2", "drawable", packageName),
-                "Punisher",
-                90,
-                100
-            )
-        )
-
-        adapter.addMonster(
-            Monster(
-                resources.getIdentifier("monster_3", "drawable", packageName),
-                "Destroyer",
-                90,
-                300
-            )
-        )
+        addMonsters()
 
         player = viewModel1.getPlayer(0)
 
@@ -105,6 +80,38 @@ class MainActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
             viewModel1.insertPlayer(PlayerEntity(0,5,0))
             player = viewModel1.getPlayer(0)
         }
+    }
+
+    private fun addMonsters() {
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_1", "drawable", packageName),
+                resources.getIdentifier("monster_icon_1", "drawable", packageName),
+                "Aboba",
+                30,
+                50
+            )
+        )
+
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_2", "drawable", packageName),
+                resources.getIdentifier("monster_icon_2", "drawable", packageName),
+                "Punisher",
+                90,
+                100
+            )
+        )
+
+        adapter.addMonster(
+            Monster(
+                resources.getIdentifier("monster_3", "drawable", packageName),
+                resources.getIdentifier("monster_icon_3", "drawable", packageName),
+                "Destroyer",
+                90,
+                300
+            )
+        )
     }
 
     override fun onItemClick(position: Int) {

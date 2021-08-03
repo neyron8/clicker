@@ -2,17 +2,15 @@ package com.example.mvvm_app
 
 import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm_app.model.Monster
 import com.example.mvvm_app.viewmodel.MonsterViewModel
 import com.example.mvvm_app.viewmodel.MyViewModelFactory
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_monster.*
-import kotlinx.android.synthetic.main.monster_item.*
 
 class MonsterActivity : AppCompatActivity() {
 
@@ -27,6 +25,7 @@ class MonsterActivity : AppCompatActivity() {
         val damage = intent.getIntExtra("Damage", 0)
 
         val imageId = monster?.imageId
+        val monsterIcon = monster?.monsterIcon
         val name = monster?.name
         val hp = monster?.hp
 
@@ -39,8 +38,14 @@ class MonsterActivity : AppCompatActivity() {
 
         imageView.setImageResource(imageId!!)
 
-        viewModel = ViewModelProvider(this,MyViewModelFactory(Monster(imageId, name!!, hp,reward)))
-            .get(MonsterViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this, MyViewModelFactory(
+                Monster(
+                    imageId,
+                    monsterIcon!!, name!!, hp, reward
+                )
+            )
+        ).get(MonsterViewModel::class.java)
 
         imageView.setOnClickListener {
             hitMonster(damage)

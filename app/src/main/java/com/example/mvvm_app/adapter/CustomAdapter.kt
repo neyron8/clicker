@@ -22,6 +22,7 @@ class CustomAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<Cus
             /*monsterIcon.setImageResource(monster.imageId)
             monsterIcon.layoutParams.height = 60 // OR
             monsterIcon.layoutParams.width = 60*/
+            monsterIcon.setImageResource(monster.monsterIcon)
             textMonsterName.text = monster.name
             textMonsterHP.text = monster.hp.toString()
             textMonsterReward.text = monster.reward.toString()

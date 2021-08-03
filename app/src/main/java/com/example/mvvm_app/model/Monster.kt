@@ -5,7 +5,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Monster(val imageId: Int, var name: String, var hp: Int, val reward : Int) : Parcelable {
+class Monster(val imageId: Int, val monsterIcon: Int, var name: String, var hp: Int, val reward : Int) : Parcelable {
     fun takeDamage(damage: Int){
         hp -= damage
     }

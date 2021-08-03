@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2890625" />
         <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/custom_pg.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2890625" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/monster_1.xml" value="0.2890625" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/monster_2.xml" value="0.2890625" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/monster_icon_1.xml" value="0.2890625" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/drawable/monster_icon_2.xml" value="0.2890625" />
+        <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/layout/activity_monster.xml" value="0.22" />
         <entry key="..\:/Users/Jacko/AndroidStudioProjects/clicker/app/src/main/res/layout/monster_item.xml" value="0.33" />
       </map>
